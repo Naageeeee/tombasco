@@ -1,0 +1,161 @@
+/* Layout for the 404 page. Button colors and hover styles come from style.css. */
+.not-found-page {
+  --not-found-shadow: 0 3px 16px rgb(18 38 58 / 12%);
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+.not-found-page .cart-count[hidden] {
+  display: none;
+}
+
+.not-found-page .not-found-menu-cart {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.not-found {
+  display: grid;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-items: center;
+  padding: 16px;
+}
+
+.not-found-inner {
+  width: min(100%, 640px);
+  text-align: center;
+}
+
+.not-found-number {
+  color: var(--blue, #1f6fb2);
+  font-size: clamp(32px, 9vw, 68px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.not-found .content-head {
+  margin-top: 16px;
+}
+
+.not-found .not-found-copy {
+  width: 100%;
+  max-width: 58ch;
+  margin-inline: auto;
+}
+
+.not-found-search button {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #55606b;
+}
+
+.not-found-search button:hover:not(:disabled) {
+  transform: none;
+  color: var(--blue, #1f6fb2);
+}
+
+.not-found-search button .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.not-found-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 452px;
+  margin: 16px auto 0;
+}
+
+.not-found-actions a {
+  width: 100%;
+  min-width: 0;
+  padding-inline: 12px;
+  box-shadow: var(--not-found-shadow);
+}
+
+.not-found-categories {
+  max-width: 530px;
+  margin: 64px auto 0;
+}
+
+.not-found-categories h2 {
+  margin: 0 0 14px;
+  color: #55606b;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.not-found-categories ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.not-found-categories a {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid #dbe3ea;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--not-found-shadow);
+  font-size: 14px;
+  transition: background-color .2s, color .2s, transform .2s;
+}
+
+.not-found-categories a:hover {
+  transform: translateY(-2px);
+  background: #e3eef8;
+}
+
+.not-found-page .footer {
+  margin-top: 0;
+}
+
+@media (max-width: 650px) {
+  .not-found-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .not-found-page .footer-links {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .not-found-page .footer-links a {
+    padding-inline: 0;
+  }
+
+  .not-found-page .footer-copyright {
+    padding-bottom: 16px;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found-actions a,
+  .not-found-categories a {
+    transition: none;
+  }
+
+  .not-found-actions a:hover,
+  .not-found-categories a:hover {
+    transform: none;
+  }
+}

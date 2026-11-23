@@ -1,1 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tom Basco Enterprise</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product-cards.css">
+    <link rel="stylesheet" href="compact-cards.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+</head>
+<body>
 
+    <!-- Icon library (defined once, reused with <use>) -->
+    <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="i-search" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+            </g>
+        </symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="21" r="1"/>
+                <circle cx="19" cy="21" r="1"/>
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+            </g>
+        </symbol>
+        <symbol id="i-truck" viewBox="0 0 24 24">
+  <path
+    d="M3 6h11v10H3zM14 10h4l3 3v3h-7zM7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+</symbol>
+        <symbol id="i-delete" viewBox="0 0 24 24">
+  <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z" fill="#25D366"/>
+            <g transform="translate(6.6 6.6) scale(.45)">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="#fff"/>
+            </g>
+        </symbol>
+       <symbol id="i-phone" viewBox="0 0 24 24">
+         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67
+         A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91 a16 16 0 0 0 6 6l1.27-1.27 a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 A2 2 0 0 1 22 16.92z"
+         fill="currentColor"/>
+         </symbol>
+         <symbol id="i-location" viewBox="0 0 24 24">
+    <path d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <circle cx="12" cy="8" r="2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"/>
+         <path d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.298 7a1 1 0 0 0 .948 1.317h18.588a1 1 0 0 0 .948-1.317l-2.298-7A1 1 0 0 0 18.996 14h-3.71"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+         </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24">
+            <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-top" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 12 7-7 7 7"/>
+                <path d="M12 19V5"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <!-- Banner -->
+    <div id="top" class="banner">
+        <div class="tick">
+            <div class="tick-group">
+                <span>Contractors and Builders can contact us for up to 10% special discount</span>
+                <span>Free delivery on orders of GH₵10,000 or more. Delivery on other orders costs up to GH₵150.</span>
+            </div>
+            <div class="tick-group" aria-hidden="true">
+                <span>Contractors and Builders can contact us for up to 10% special discount</span>
+                <span>Free delivery on orders of GH₵10,000 or more. Delivery on other orders costs up to GH₵150.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="top-inner">
+
+        <!-- Header + slide-in menu (the menu is anchored to this wrapper only) -->
+        <div class="header-area">
+            <header class="header">
+
+                <div class="logo-cell">
+                    <a href="#" class="logo-link" aria-label="Tom Basco Enterprise, home">
+                        <div class="logo">
+                            <div class="logo-name">Tom Basco Enterprise</div>
+                            <div class="logo-tag">
+                                <img src="assets/images/interplast-logo.webp" alt="Interplast logo" width="64" height="29">
+                                <div class="logo-agent">agent</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="hdr-right">
+                    <nav class="nav">
+    <a href="index.html" class="active" aria-current="page">Products</a>
+    <a href="pages/about.html">About Us</a>
+    <a href="#quote">Request Quote</a>
+                     </nav>
+
+                    <div class="search">
+                        <svg class="icon icon-search" aria-hidden="true"><use href="#i-search"/></svg>
+                        <input id="catalog-search" aria-label="Search products" placeholder="Search e.g. half inch tee">
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn-wa" type="button">
+                            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+                            <span>WhatsApp</span>
+                        </button>
+                        <button class="btn-cart cart-btn" type="button" aria-label="Cart, empty">
+                            <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>
+                            <span class="badge cart-count" hidden>0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+                    <svg class="icon i-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+                    <svg class="icon i-close" aria-hidden="true"><use href="#i-close"/></svg>
+                </button>
+
+            </header>
+
+            <div class="menu" id="menu" hidden>
+                <div class="menu-overlay"></div>
+                <div class="menu-panel">
+                    <nav class="menu-nav">
+                  <a href="index.html" class="active" aria-current="page">Products</a>
+                  <a href="pages/about.html">About Us</a>
+                 <a href="index.html#quote">Request Quote</a>
+                 </nav>
+                    <button class="btn-wa btn-wa-full" type="button">
+                        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+                        <span>WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- Page: column A (categories) + column B (products) -->
+        <div class="layout">
+
+            <aside class="sidebar">
+                <button class="pill" type="button" aria-expanded="false" aria-controls="category-popup">
+                 <span class="pill-label">PVC elbows</span>
+                 <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                 </button>
+
+                <div class="cat-list" id="nav">
+                    <div class="sidebar-title">CATEGORIES</div>
+
+                    <details open>
+                        <summary class="sl">
+                            PVC Pipe Fittings
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </summary>
+                        <div class="sub-list">
+                            <a href="#" class="sub-link active">PVC elbows</a>
+                            <a href="#" class="sub-link sl">PVC tees</a>
+                            <a href="#" class="sub-link sl">PVC bends</a>
+                            <a href="#" class="sub-link sl">PVC couplings</a>
+                            <a href="#" class="sub-link sl">PVC reducers</a>
+                            <a href="#" class="sub-link sl">PVC end caps</a>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="sl">
+                            PVC Drainage Products
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </summary>
+                        <div class="sub-list">
+                            <a href="#" class="sub-link sl">PVC Y branches</a>
+                            <a href="#" class="sub-link sl">PVC clean outs</a>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="sl">
+                            PVC Pipe Connectors
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </summary>
+                        <div class="sub-list">
+                            <a href="#" class="sub-link sl">PVC unions</a>
+                            <a href="#" class="sub-link sl">PVC sockets</a>
+                            <a href="#" class="sub-link sl">PVC plugs</a>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="sl">
+                            PVC Pipe Accessories
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </summary>
+                        <div class="sub-list">
+                            <a href="#" class="sub-link sl">PVC air valves</a>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="sl">
+                            PVC Sealing Materials
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </summary>
+                        <div class="sub-list">
+                            <a href="#" class="sub-link sl">PVC glue</a>
+                            <a href="#" class="sub-link sl">PVC tape</a>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary class="sl">
+                            PVC Water Systems
+                            <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+                        </summary>
+                        <div class="sub-list">
+                            <a href="#" class="sub-link sl">Interplast pipes</a>
+                        </div>
+                    </details>
+                </div>
+            </aside>
+
+            <main class="content">
+                <div class="content-head">
+                    <h1 id="title"></h1>
+                    <p id="blurb"></p>
+                </div>
+                <div id="grid"></div>
+            </main>
+
+        </div>
+
+        <!-- Category popup -->
+<div class="category-popup-overlay" hidden>
+</div>
+
+<div class="category-popup" id="category-popup" hidden>
+    <div class="category-popup-header">
+        <strong>Browse categories</strong>
+        <button class="category-popup-close" type="button" aria-label="Close categories">
+            &times;
+        </button>
+    </div>
+
+    <div class="category-popup-list">
+        <!-- JavaScript will move your existing category list here -->
+    </div>
+</div>
+
+    </div>
+
+    <!-- Sticky bar (tablet and mobile, appears after the header scrolls away) -->
+    <div class="sticky-bar">
+        <button class="pill pill-sticky" type="button" aria-expanded="false" aria-controls="category-popup">
+              <span class="pill-label">PVC elbows</span>
+              <svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+        <div class="sticky-right">
+            <button class="btn-cart cart-btn sticky-cart" type="button" aria-label="Cart, empty">
+                <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>
+                <span class="badge cart-count" data-cart-count hidden>0</span>
+            </button>
+            <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+                <svg class="icon i-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+                <svg class="icon i-close" aria-hidden="true"><use href="#i-close"/></svg>
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ==========================================================
+     REQUEST QUOTE
+     ========================================================== -->
+
+<section class="quote-section" id="quote">
+
+    <div class="quote-inner">
+
+        <h1>Request Quote</h1>
+
+        <div class="quote-layout">
+
+            <!-- Form fields -->
+            <form class="quote-form" id="quote-form">
+
+                <!-- Column 1 -->
+                <div class="quote-column">
+
+                    <div class="form-group">
+                        <label for="quote-name">Name</label>
+                        <input
+                            type="text"
+                            id="quote-name"
+                            name="name"
+                            placeholder="Jon Doe"
+                            autocomplete="name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quote-number">Number</label>
+                        <input
+                            type="tel"
+                            id="quote-number"
+                            name="number"
+                            placeholder="0243939998"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- Column 2 -->
+                <div class="quote-column">
+
+                    <div class="form-group fitting-group">
+
+                        <label for="fitting-trigger">Fitting</label>
+
+                        <button
+                            class="fitting-trigger"
+                            id="fitting-trigger"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="fitting-popup"
+                            aria-haspopup="true"
+                        >
+                            <span class="fitting-label">Select a fitting</span>
+
+                            <svg class="icon fitting-chevron" aria-hidden="true">
+                                <use href="#i-chevron"/>
+                            </svg>
+                        </button>
+
+                        <!-- Fitting popup: populated from main categories by JS -->
+                        <div
+                            class="fitting-popup"
+                            id="fitting-popup"
+                            role="menu"
+                            hidden
+                        >
+                            <div class="fitting-popup-list">
+                                <!-- JavaScript inserts main categories here -->
+                            </div>
+                        </div>
+
+                        <input
+                            type="hidden"
+                            id="quote-fitting"
+                            name="fitting"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="quote-message">Message</label>
+
+                        <textarea
+                            id="quote-message"
+                            name="message"
+                            placeholder="Write your message here"
+                            rows="4"
+                        ></textarea>
+                    </div>
+
+                </div>
+
+
+                <!-- Hidden submit control for form handling -->
+                <button type="submit" hidden aria-hidden="true"></button>
+
+            </form>
+
+
+            <!-- Action buttons -->
+            <div class="quote-actions">
+
+                <a class="quote-call" href="tel:0243939998">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-phone"/>
+                    </svg>
+                    <span>Call Us</span>
+                </a>
+
+                <button class="quote-whatsapp" type="button">
+                    <span>Send Quote</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quick quote -->
+        <div class="quick-quote">
+
+            <div class="quick-quote-text">
+                <strong>Have a list? Get a quick quote.</strong>
+
+                <p>
+                    Send a photo or screenshot of your list and we reply
+                    on WhatsApp shortly.
+                </p>
+            </div>
+
+            <a class="quick-quote-whatsapp" href="https://wa.me/233243939998">
+                <svg class="icon" aria-hidden="true">
+                    <use href="#i-whatsapp"/>
+                </svg>
+                <span>Send Via WhatsApp</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================================
+     PAY US A VISIT
+     ========================================================== -->
+
+<section class="visit-section" id="visit">
+
+    <div class="visit-inner">
+
+        <h2 class="visit-heading">
+            Pay us a visit
+
+            <svg class="icon visit-icon" aria-hidden="true">
+                <use href="#i-location"/>
+            </svg>
+        </h2>
+
+
+        
+
+<div class="visit-layout">
+
+    <!-- Google Maps -->
+    <div class="visit-map">
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d711.3644067822238!2d-1.6211549434911816!3d6.689670931256039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb97b86423474d%3A0xc006f9c19b671425!2sTom%20Basco%20Enterprise%20(Interplast%20agent)!5e0!3m2!1sen!2sde!4v1794395052038!5m2!1sen!2sde"
+            width="100%"
+            height="350"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Tom Basco Enterprise location">
+        </iframe>
+
+    </div>
+
+    <!-- Address and contact information -->
+    <div class="visit-details">
+
+        <p>
+            <strong>Mobile:</strong>
+            <a href="tel:0243939998">0243939998</a>
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            Adum Aseda House
+        </p>
+
+        <p>
+            <strong>P.O. Box:</strong>
+            3164
+        </p>
+
+        <p class="visit-description">
+            Step by our shop to have the best shopping experience.
+            Our well behaved staff will make sure you get served
+            and taken care of the best they can.
+        </p>
+
+        <a
+            class="visit-map-link"
+            href="https://www.google.com/maps/search/?api=1&query=Tom+Basco+Enterprise+%28Interplast+agent%29"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Maps
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================================
+     FOOTER
+     ========================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <!-- Footer links -->
+        <nav class="footer-links" aria-label="Footer navigation">
+
+            <a href="pages/terms.html">
+    Terms &amp; Conditions
+</a>
+
+<a href="pages/privacy.html">
+    Privacy Policy
+</a>
+
+        </nav>
+
+
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            &copy; 2026 Tom Basco Enterprise
+        </div>
+
+    </div>
+
+</footer>
+
+    <!-- Floating buttons (appear after the header scrolls away) -->
+    <button class="float-cart cart-btn" type="button" aria-label="Cart, empty">
+        <svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg>
+        <span class="badge cart-count" hidden>0</span>
+    </button>
+
+    <a href="#top" class="to-top" aria-label="Back to top">
+        <svg class="icon" aria-hidden="true"><use href="#i-top"/></svg>
+    </a>
+
+
+
+    <div class="cart-toast" id="cart-toast" hidden>
+  <strong>✓ &nbsp; &nbsp; &nbsp; Added to cart</strong>
+  <span id="cart-toast-item"></span>
+
+  <div class="cart-toast-actions">
+    <button type="button" id="toast-view-cart">View cart</button>
+    <button type="button" id="toast-keep-shopping">Keep shopping</button>
+  </div>
+</div>
+
+    <div class="cart-overlay" id="cart-overlay" hidden></div>
+    
+
+<aside class="cart-panel" id="cart-panel" hidden>
+  <div class="cart-panel-header">
+    <h2>Your cart (<span id="cart-total-items">0</span>)</h2>
+    <button type="button" id="cart-close" aria-label="Close cart">&times;</button>
+  </div>
+
+  <div class="cart-items" id="cart-items"></div>
+
+  <div class="cart-empty" id="cart-empty">
+    <div class="cart-empty-icon" aria-hidden="true">
+      <svg class="icon"><use href="#i-cart"></use></svg>
+    </div>
+    <h3>Your cart is empty</h3>
+    <p>Add products to get started.</p>
+    <button type="button" id="cart-browse" class="pc__add">Browse products</button>
+  </div>
+
+  <div class="cart-delivery-note">
+  <svg class="icon" aria-hidden="true">
+    <use href="#i-truck"></use>
+  </svg>
+  <span>Same day delivery around Kumasi and its environs</span>
+</div>
+
+  <div class="cart-footer" id="cart-footer" hidden>
+  <div class="delivery-progress">
+    <div class="delivery-progress-label">
+      <span id="delivery-progress-message">Add GH₵10,000 more for free delivery</span>
+      <strong id="delivery-progress-percent">0%</strong>
+    </div>
+
+    <div class="delivery-progress-track">
+      <div class="delivery-progress-fill" id="delivery-progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="cart-subtotal-row">
+    <span>Subtotal</span>
+    <strong id="cart-subtotal">GH₵ 0.00</strong>
+  </div>
+
+  <button type="button" id="cart-checkout" class="pc__add">
+  Checkout
+</button>
+</div>
+
+</aside>
+
+
+
+<aside class="checkout-panel" id="checkout-panel" role="dialog"
+  aria-modal="true" aria-labelledby="checkout-heading" hidden>
+
+  <svg class="checkout-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-checkout-alert" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="M12 7v6m0 4h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-checkout-ready" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/>
+      <path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-checkout-copy" viewBox="0 0 24 24">
+  <rect x="8" y="8" width="12" height="13" rx="2"
+        fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"
+        fill="none" stroke="currentColor" stroke-width="1.8"/>
+</symbol>
+  </svg>
+
+  <div class="checkout-header">
+    <button type="button" id="checkout-back" class="checkout-icon-button" aria-label="Back to cart">
+      <svg class="icon checkout-back-icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+    </button>
+    <h2 id="checkout-heading">Checkout</h2>
+    <button type="button" id="checkout-close" class="checkout-icon-button" aria-label="Close checkout">
+      <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+  </div>
+
+  <form id="checkout-form" class="checkout-form" novalidate>
+    <div class="checkout-body">
+      <div class="checkout-progress" role="progressbar" aria-label="Checkout step"
+        aria-valuemin="1" aria-valuemax="3" aria-valuenow="2">
+        <span class="active"></span><span class="active"></span><span></span>
+      </div>
+      <p class="checkout-step">Step 2 of 3: Your details</p>
+
+      <div id="checkout-errors" class="checkout-error-summary" role="alert" tabindex="-1" hidden>
+        <div class="checkout-error-title">
+          <svg class="icon" aria-hidden="true"><use href="#i-checkout-alert"></use></svg>
+          <strong id="checkout-error-title"></strong>
+        </div>
+        <p id="checkout-error-description"></p>
+      </div>
+
+      <div class="checkout-field">
+        <label for="checkout-name">Full name</label>
+        <input id="checkout-name" name="fullName" type="text" autocomplete="name"
+          placeholder="Your full name" maxlength="100" required aria-describedby="checkout-name-error">
+        <p class="checkout-field-error" id="checkout-name-error" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-checkout-alert"></use></svg><span></span>
+        </p>
+      </div>
+
+      <div class="checkout-field">
+        <label for="checkout-phone">Phone number</label>
+        <input id="checkout-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+          placeholder="0243939998" maxlength="30" required aria-describedby="checkout-phone-error">
+        <p class="checkout-field-error" id="checkout-phone-error" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-checkout-alert"></use></svg><span></span>
+        </p>
+      </div>
+
+      <fieldset class="checkout-method">
+        <legend>How would you like to get your order?</legend>
+        <div class="checkout-method-buttons">
+          <button type="button" data-checkout-method="delivery" aria-pressed="true" aria-controls="checkout-delivery">Delivery</button>
+          <button type="button" data-checkout-method="pickup" aria-pressed="false" aria-controls="checkout-pickup">Pick up at the shop</button>
+        </div>
+      </fieldset>
+
+      <div id="checkout-delivery">
+        <div class="checkout-field">
+          <label for="checkout-location">Delivery location or landmark</label>
+          <textarea id="checkout-location" name="location" autocomplete="street-address"
+            placeholder="Area, street, nearest landmark" maxlength="500" required aria-describedby="checkout-location-error"></textarea>
+          <p class="checkout-field-error" id="checkout-location-error" hidden>
+            <svg class="icon" aria-hidden="true"><use href="#i-checkout-alert"></use></svg><span></span>
+          </p>
+        </div>
+        <div class="checkout-field">
+          <label for="checkout-gps">Ghana Post GPS address (optional)</label>
+          <input id="checkout-gps" name="gps" type="text" placeholder="AK-000-0000" maxlength="30">
+        </div>
+      </div>
+
+      <div id="checkout-pickup" hidden>
+        <div class="checkout-pickup-card">
+          <svg class="icon" aria-hidden="true"><use href="#i-location"></use></svg>
+          <div>
+            <strong>Pick up at</strong>
+            <p>Tom Basco Enterprise, Adum - Kumasi</p>
+          </div>
+        </div>
+        <iframe class="checkout-map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d711.3644067822238!2d-1.6211549434911816!3d6.689670931256039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb97b86423474d%3A0xc006f9c19b671425!2sTom%20Basco%20Enterprise%20(Interplast%20agent)!5e0!3m2!1sen!2sde!4v1794395052038!5m2!1sen!2sde"
+          title="Tom Basco Enterprise pickup location" loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
+      <div class="checkout-field">
+        <label for="checkout-note">Note for us (optional)</label>
+        <input id="checkout-note" name="note" type="text" placeholder="Anything we should know?" maxlength="500">
+      </div>
+    </div>
+
+
+    <div class="checkout-payment-body" id="checkout-payment" hidden>
+  <div class="checkout-progress" role="progressbar"
+       aria-label="Checkout step" aria-valuemin="1" aria-valuemax="3" aria-valuenow="3">
+    <span class="active"></span><span class="active"></span><span class="active"></span>
+  </div>
+
+  <p class="checkout-step">Step 3 of 3: Payment</p>
+  <h3 class="checkout-payment-title">Order Pending</h3>
+
+  <div class="checkout-order-reference">
+  <span>Order number</span>
+  <div class="checkout-order-number-card">
+    <strong id="payment-order-number"></strong>
+    <button type="button" id="copy-order-number">
+  <svg class="icon" aria-hidden="true"><use href="#i-checkout-copy"></use></svg>
+  Copy
+</button>
+  </div>
+</div>
+
+  <div class="checkout-payment-card">
+    <h3>Pay with Mobile Money</h3>
+    <p>Send <strong id="payment-total">GH₵ 0.00</strong> to</p>
+
+    <div class="checkout-payment-phone">
+      <strong id="payment-phone">0243939998</strong>
+      <button type="button" id="copy-payment-phone">
+        <svg class="icon" aria-hidden="true"><use href="#i-checkout-copy"></use></svg>
+        Copy
+      </button>
+    </div>
+
+    <p>Account name: Tom Basco Enterprise</p>
+    <p>Add <strong id="payment-reference"></strong> as the reference. We’ll verify the payment after checking the transaction.</p>
+  </div>
+
+  <p class="checkout-alternative">
+    For alternative payment methods, like bank transfers, please contact us directly.
+  </p>
+
+  <div class="checkout-field">
+    <label for="payment-transaction-id">Transaction ID</label>
+    <input id="payment-transaction-id" type="text" autocomplete="off" required aria-describedby="payment-transaction-error">
+    <p class="checkout-field-error" id="payment-transaction-error" hidden>
+      Enter your transaction ID.
+    </p>
+  </div>
+</div>
+
+
+    <div class="checkout-footer" id="checkout-details-footer">
+  <div class="checkout-total-row">
+    <span id="checkout-item-count">0 items</span>
+    <strong id="checkout-subtotal">GH₵ 0.00</strong>
+  </div>
+
+  <p class="checkout-fulfilment-note">
+    <svg class="icon" aria-hidden="true">
+      <use id="checkout-method-icon" href="#i-truck"></use>
+    </svg>
+    <span id="checkout-method-message">Same day delivery around Kumasi and its environs</span>
+  </p>
+
+  <button type="submit" id="place-order" class="pc__add">Make Payment</button>
+  <p id="checkout-privacy-note" class="checkout-privacy">We only use your details to deliver your order.</p>
+</div>
+
+<div class="checkout-footer checkout-payment-footer" id="checkout-payment-footer" hidden>
+  <button type="button" id="payment-done" class="pc__add">Place Order</button>
+  <a class="quote-call" href="tel:0243939998">
+  <svg class="icon" aria-hidden="true">
+    <use href="#i-phone"></use>
+  </svg>
+  <span>Call Us</span>
+</a>
+</div>
+</form>
+
+
+<!-- Checkout outcomes. Insert inside #checkout-panel, after the payment form. -->
+<section id="checkout-outcome-failed" class="checkout-outcome"
+  aria-labelledby="checkout-outcome-failed-title" hidden>
+  <div class="checkout-body checkout-outcome-body">
+    <div class="checkout-outcome-content">
+      <svg class="icon checkout-outcome-warning" aria-hidden="true">
+        <use href="#i-checkout-alert"></use>
+      </svg>
+      <h3 id="checkout-outcome-failed-title" class="checkout-payment-title" tabindex="-1">
+        We could not confirm your order
+      </h3>
+      <p id="checkout-outcome-failed-message">
+        Your cart and details are still here. Try submitting again with the same transaction ID, or call us. Please do not pay again.
+      </p>
+      <div class="checkout-outcome-actions">
+        <button type="button" id="checkout-outcome-retry" class="pc__add">Try again</button>
+        <a class="quote-call" href="tel:0243939998">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+          <span>Call Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="checkout-outcome-received" class="checkout-outcome"
+  aria-labelledby="checkout-outcome-received-title" hidden>
+  <div class="checkout-body checkout-outcome-body">
+    <div class="checkout-outcome-content">
+      <svg class="icon checkout-outcome-check" aria-hidden="true">
+        <use href="#i-checkout-ready"></use>
+      </svg>
+      <h3 id="checkout-outcome-received-title" class="checkout-payment-title" tabindex="-1">
+        Order received
+      </h3>
+      <div class="checkout-order-reference">
+        <span>Order number</span>
+        <div class="checkout-order-number-card">
+          <strong id="checkout-outcome-order-number"></strong>
+          <button type="button" id="checkout-outcome-copy-order-number" aria-label="Copy order number">Copy</button>
+        </div>
+      </div>
+
+      <div id="checkout-outcome-pickup" class="checkout-outcome-details" hidden>
+        <p>We’ll verify your payment and call you when your order is ready to collect.</p>
+        <div class="checkout-pickup-card">
+          <svg class="icon" aria-hidden="true"><use href="#i-location"></use></svg>
+          <div>
+            <strong>Pick up at</strong>
+            <p>Tom Basco Enterprise, Adum - Kumasi</p>
+          </div>
+        </div>
+        <div id="checkout-outcome-map" hidden></div>
+      </div>
+
+      <div id="checkout-outcome-delivery" class="checkout-outcome-details" hidden>
+        <p>We’ll verify your payment and call you to confirm your delivery.</p>
+      </div>
+
+      <svg class="checkout-symbols" aria-hidden="true" focusable="false">
+        <symbol id="i-checkout-invoice" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10z"/>
+            <path d="M13 3v7h7M8 13h8m-8 4h8"/>
+          </g>
+        </symbol>
+      </svg>
+      <div class="checkout-outcome-invoice">
+        <button type="button" id="checkout-outcome-download" class="pc__add">
+          <svg class="icon" aria-hidden="true"><use href="#i-checkout-invoice"></use></svg>
+          <span>Download invoice</span>
+        </button>
+        <p id="checkout-outcome-delivery-note" class="checkout-fulfilment-note">
+          <svg class="icon" aria-hidden="true"><use href="#i-truck"></use></svg>
+          <span>Same day delivery around Kumasi and its environs</span>
+        </p>
+        <p id="checkout-outcome-download-message" role="status" hidden></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkout-footer">
+    <button type="button" id="checkout-outcome-done" class="pc__add">Done</button>
+    <a class="quote-call" href="tel:0243939998">
+      <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+      <span>Call Us</span>
+    </a>
+  </div>
+</section>
+
+
+
+</aside>
+
+    <script src="script.js"></script>
+    <script type="module" src="product-cards/js/app.js"></script>
+    <script type="module" src="product-cards/js/checkout.js"></script>
+    <script type="module" src="product-cards/js/checkout-outcomes.js"></script>
+    <script type="module" src="/product-cards/js/site-settings.js"></script>
+</body>
+</html>

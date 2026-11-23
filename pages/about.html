@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>About Us | Tom Basco Enterprise</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="../style.css">
+
+    <script src="../script.js" defer></script>
+</head>
+
+<body class="simple-header">
+
+     <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="i-search" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+            </g>
+        </symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="21" r="1"/>
+                <circle cx="19" cy="21" r="1"/>
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+            </g>
+        </symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z" fill="#25D366"/>
+            <g transform="translate(6.6 6.6) scale(.45)">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" fill="#fff"/>
+            </g>
+        </symbol>
+       <symbol id="i-phone" viewBox="0 0 24 24">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67
+    A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91 a16 16 0 0 0 6 6l1.27-1.27 a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 A2 2 0 0 1 22 16.92z"
+    fill="currentColor"/>
+        </symbol>
+    <symbol id="i-location" viewBox="0 0 24 24">
+    <path d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <circle cx="12" cy="8" r="2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"/>
+    <path d="M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.298 7a1 1 0 0 0 .948 1.317h18.588a1 1 0 0 0 .948-1.317l-2.298-7A1 1 0 0 0 18.996 14h-3.71"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+            </symbol>
+
+            <!-- Delivery truck -->
+<symbol id="i-delivery" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h12v12H3z"/>
+        <path d="M15 10h4l3 4v4h-7z"/>
+        <circle cx="7.5" cy="18" r="2"/>
+        <circle cx="18.5" cy="18" r="2"/>
+    </g>
+</symbol>
+
+<!-- Discount / price tag -->
+<symbol id="i-discount" viewBox="0 0 24 24">
+    <path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a3 3 0 0 0 0 6v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a3 3 0 0 0 0-6V6Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <path d="m9 15 6-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"/>
+    <circle cx="9" cy="9" r="1" fill="currentColor"/>
+    <circle cx="15" cy="15" r="1" fill="currentColor"/>
+</symbol>
+
+<!-- Gift / free delivery -->
+<symbol id="i-gift" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 7 9-4 9 4-9 4z"/>
+        <path d="M3 7v10l9 4 9-4V7"/>
+        <path d="M12 11v10"/>
+        <path d="m3 7 9 4 9-4"/>
+    </g>
+</symbol>
+
+        <symbol id="i-menu" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24">
+            <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-top" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 12 7-7 7 7"/>
+                <path d="M12 19V5"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <!-- Banner -->
+    <div id="top" class="banner">
+        <div class="tick">
+            <div class="tick-group">
+                <span>Contractors and Builders can contact us for up to 10% special discount</span>
+                <span>Free delivery on orders of GH₵10,000 or more. Delivery on other orders costs up to GH₵150.</span>
+            </div>
+            <div class="tick-group" aria-hidden="true">
+                <span>Contractors and Builders can contact us for up to 10% special discount</span>
+                <span>Free delivery on orders of GH₵10,000 or more. Delivery on other orders costs up to GH₵150.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="top-inner">
+
+        <!-- Header + slide-in menu (the menu is anchored to this wrapper only) -->
+        <div class="header-area">
+    <header class="header">
+
+        <div class="logo-cell">
+            <a href="../index.html" class="logo-link" aria-label="Tom Basco Enterprise, home">
+                <div class="logo">
+                    <div class="logo-name">Tom Basco Enterprise</div>
+
+                    <div class="logo-tag">
+                        <img src="../assets/images/interplast-logo.webp" alt="Interplast logo" width="64" height="29">
+                        <div class="logo-agent">agent</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="hdr-right">
+            <nav class="nav">
+                <a href="../index.html">Products</a>
+                <a href="about.html" class="active" aria-current="page">About Us</a>
+                <a href="../index.html#quote">Request Quote</a>
+            </nav>
+
+            <div class="actions">
+                <a class="quote-call header-call" href="tel:0243939998">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-phone"></use>
+                    </svg>
+                    <span>Call Us</span>
+                </a>
+
+                <button class="btn-wa" type="button">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#i-whatsapp"></use>
+                    </svg>
+                    <span>WhatsApp</span>
+                </button>
+            </div>
+        </div>
+
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+            <svg class="icon i-menu" aria-hidden="true">
+                <use href="#i-menu"></use>
+            </svg>
+
+            <svg class="icon i-close" aria-hidden="true">
+                <use href="#i-close"></use>
+            </svg>
+        </button>
+
+    </header>
+
+            <div class="menu" id="menu" hidden>
+                <div class="menu-overlay"></div>
+                <div class="menu-panel">
+                    <nav class="menu-nav">
+                 <a href="../index.html">Products</a>
+                <a href="about.html" class="active" aria-current="page">About Us</a>
+                 <a href="../index.html#quote">Request Quote</a>
+                 </nav>
+                    <button class="btn-wa btn-wa-full" type="button">
+                        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+                        <span>WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- ==========================================================
+     ABOUT TOM BASCO ENTERPRISE
+     ========================================================== -->
+
+<main>
+
+    <!-- ABOUT INTRO + OUR STORY -->
+    <section class="about-hero">
+
+        <div class="about-inner">
+
+            <div class="about-intro">
+                <h1>About Tom Basco Enterprise</h1>
+
+                <p>
+                    Your local source for PVC pipes, fittings, and plumbing
+                    supplies in Kumasi. We serve contractors, builders and
+                    households with quality products, fair prices and
+                    same day delivery.
+                </p>
+            </div>
+
+            <div class="about-story">
+
+                <div class="story-image">
+                    <!-- Shop image placeholder -->
+                    <div class="image-placeholder">
+                        [Shop photo]
+                    </div>
+                </div>
+
+                <div class="story-content">
+
+                    <h2>Our story</h2>
+
+                    <p>
+                        Tom Basco Enterprise is an Interplast agent based at
+                        Adum Aseda House in Kumasi. We stock PVC pipes,
+                        fittings, drainage and water system products, so
+                        most jobs can be supplied from one shop.
+                    </p>
+
+                    <p>
+                        Whether you are plumbing a new house, laying
+                        drainage on a site or fixing a leak at home, our
+                        team helps you choose the right size and quantity,
+                        and gets it to you the same day around Kumasi
+                        and its environs.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHAT WE SUPPLY -->
+    <section class="supply-section">
+
+        <div class="supply-inner">
+
+            <h2>What we supply</h2>
+
+            <div class="supply-grid">
+
+                <article class="supply-card">
+                    <h3>PVC Pipe Fittings</h3>
+                    <p>Bends, Slow bends, Tees</p>
+                </article>
+
+                <article class="supply-card">
+                    <h3>PVC Drainage Products</h3>
+                    <p>Y branches, Clean outs</p>
+                </article>
+
+                <article class="supply-card">
+                    <h3>PVC Pipe Connectors</h3>
+                    <p>Unions, Valve sockets, Thread plugs</p>
+                </article>
+
+                <article class="supply-card">
+                    <h3>PVC Pipe Accessories</h3>
+                    <p>Air valves</p>
+                </article>
+
+                <article class="supply-card">
+                    <h3>PVC Sealing Materials</h3>
+                    <p>S-100 glue, Eva glue, Thread tape</p>
+                </article>
+
+                <article class="supply-card">
+                    <h3>PVC Water Systems</h3>
+                    <p>Interplast pipes</p>
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY CUSTOMERS CHOOSE US -->
+    <section class="benefits-section">
+
+        <div class="benefits-inner">
+
+            <h2>Why customers choose us</h2>
+
+            <div class="benefits-grid">
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">
+                      <svg class="icon" aria-hidden="true">
+                      <use href="#i-delivery"/>
+                     </svg>
+            </div>
+
+                    <h3>Same day delivery</h3>
+
+                    <p>
+                        Deliveries within Kumasi and its environs are
+                        handled the same day.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">
+                     <svg class="icon" aria-hidden="true">
+                     <use href="#i-discount"/>
+                     </svg>
+             </div>
+
+                    <h3>Builders discount</h3>
+
+                    <p>
+                        Contractors and builders can get up to 10%
+                        special discount.
+                    </p>
+
+                </article>
+
+                <article class="benefit-card">
+
+                    <div class="benefit-icon">
+                     <svg class="icon" aria-hidden="true">
+                     <use href="#i-gift"/>
+                     </svg>
+            </div>
+
+                    <h3>Free delivery</h3>
+
+                    <p>
+                        On orders above GH₵10,000, delivery is on us.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DELIVERY AND PAYMENT -->
+    <section class="delivery-section">
+
+        <div class="delivery-inner">
+
+            <h2>Delivery and payment</h2>
+
+            <div class="delivery-grid">
+
+                <article class="delivery-card">
+
+                    <h3>How ordering works</h3>
+
+                    <ol>
+                        <li>Add products to your cart.</li>
+                        <li>Check out with your name, phone number and delivery location.</li>
+                        <li>We call you to confirm your order.</li>
+                        <li>Pay by Mobile Money, and we deliver or you collect.</li>
+                    </ol>
+
+                </article>
+
+
+                <article class="delivery-card">
+
+                    <h3>Delivery area and times</h3>
+
+                    <p>
+                        Same day delivery around Kumasi and its environs
+                        for orders confirmed and paid in the morning.
+                    </p>
+
+                    <p>
+                        Delivery is free above GH₵10,000 and half price
+                        from GH₵5,000. We tell you the expected time
+                        when we call.
+                    </p>
+
+                </article>
+
+
+                <article class="delivery-card">
+
+                    <h3>Paying by Mobile Money</h3>
+
+                    <p>
+                        After you place your order, send the amount to
+                        0243939998 (Tom Basco Enterprise) and use your
+                        order number as the reference. We check payments
+                        on our side, and we will never ask for your PIN.
+                    </p>
+
+                </article>
+
+
+                <article class="delivery-card">
+
+                    <h3>Returns</h3>
+
+                    <p>
+                        Tell us within 48 hours if anything is damaged
+                        or wrong. Unused items in their original condition
+                        can be returned within 7 days with your order
+                        number, items list, and sufficient comment or
+                        details as needed for assessment. Refunds or
+                        exchanges are handled in line with our
+                        <a href="terms.html">Terms and Conditions</a>.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- READY TO ORDER -->
+    <section class="ready-section">
+
+        <div class="ready-inner">
+
+            <h2>Ready to order?</h2>
+
+            <p>
+                Browse the catalogue, or call us and we will help you choose.
+            </p>
+
+            <div class="ready-actions">
+
+                <a href="../index.html" class="btn-primary">
+                    Browse products
+                </a>
+
+                <a href="tel:0243939998" class="btn-secondary">
+
+                    <span class="button-icon">
+                <svg class="icon" aria-hidden="true">
+                <use href="#i-phone"/>
+                </svg>
+    </span>
+                    Call us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ==========================================================
+     PAY US A VISIT
+     ========================================================== -->
+
+<section class="visit-section" id="visit">
+
+    <div class="visit-inner">
+
+        <h2 class="visit-heading">
+            Pay us a visit
+
+            <svg class="icon visit-icon" aria-hidden="true">
+                <use href="#i-location"/>
+            </svg>
+        </h2>
+
+
+        
+
+<div class="visit-layout">
+
+    <!-- Google Maps -->
+    <div class="visit-map">
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d711.3644067822238!2d-1.6211549434911816!3d6.689670931256039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb97b86423474d%3A0xc006f9c19b671425!2sTom%20Basco%20Enterprise%20(Interplast%20agent)!5e0!3m2!1sen!2sde!4v1794395052038!5m2!1sen!2sde"
+            width="100%"
+            height="350"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Tom Basco Enterprise location">
+        </iframe>
+
+    </div>
+
+    <!-- Address and contact information -->
+    <div class="visit-details">
+
+        <p>
+            <strong>Mobile:</strong>
+            <a href="tel:0243939998">0243939998</a>
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            Adum Aseda House
+        </p>
+
+        <p>
+            <strong>P.O. Box:</strong>
+            3164
+        </p>
+
+        <p class="visit-description">
+            Step by our shop to have the best shopping experience.
+            Our well behaved staff will make sure you get served
+            and taken care of the best they can.
+        </p>
+
+        <a
+            class="visit-map-link"
+            href="https://www.google.com/maps/search/?api=1&query=Tom+Basco+Enterprise+%28Interplast+agent%29"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open in Google Maps
+        </a>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================================
+     FOOTER
+     ========================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <!-- Footer links -->
+        <nav class="footer-links" aria-label="Footer navigation">
+
+             <a href="terms.html">
+            Terms &amp; Conditions
+            </a>
+
+        <a href="privacy.html">
+             Privacy Policy
+          </a>
+
+        </nav>
+
+
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            &copy; 2026 Tom Basco Enterprise
+        </div>
+
+    </div>
+
+</footer>
+
+<a href="#top" class="to-top" aria-label="Back to top">
+    <svg class="icon" aria-hidden="true">
+        <use href="#i-top"></use>
+    </svg>
+</a>
+
+</body>
+</html>
+
