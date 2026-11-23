@@ -21,11 +21,9 @@ function createPager(grid) {
   let cards = [];
   let visibleCount = 0;
   let expanded = false;
+  let columns = 1;
 
   function batchSizes() {
-    const tracks = getComputedStyle(grid).gridTemplateColumns;
-    // The computed auto-fit grid includes empty tracks as 0px.
-    const columns = tracks.trim().split(/\s+/).length;
     return columns <= 3
       ? { first: 12, more: 12 }
       : { first: 4 * columns, more: 2 * columns };
@@ -51,8 +49,21 @@ function createPager(grid) {
     button.hidden = visibleCount >= products.length;
   }
 
-  function syncFirstBatch() {
-    if (products.length && !expanded) showCount(batchSizes().first);
+  function syncGrid() {
+    if (!products.length) return;
+
+    const style = getComputedStyle(grid);
+    const minimum = parseFloat(style.getPropertyValue('--compact-card-min')) || 240;
+    const gap = parseFloat(style.columnGap) || 0;
+    const width = grid.getBoundingClientRect().width;
+    columns = Math.max(1, Math.floor((width + gap) / (minimum + gap)));
+
+    if (grid.dataset.columns !== String(columns)) {
+      grid.dataset.columns = String(columns);
+      grid.style.setProperty('--compact-columns', String(columns));
+    }
+
+    if (!expanded) showCount(batchSizes().first);
   }
 
   button.addEventListener('click', event => {
@@ -72,10 +83,10 @@ function createPager(grid) {
   window.addEventListener('scroll', () => {
     if (!expanded || window.scrollY > 1) return;
     expanded = false;
-    syncFirstBatch();
+    syncGrid();
   }, { passive: true });
 
-  new ResizeObserver(syncFirstBatch).observe(grid);
+  new ResizeObserver(syncGrid).observe(grid);
 
   return (nextProducts, nextOptions) => {
     products = nextProducts;
@@ -88,7 +99,7 @@ function createPager(grid) {
 
     if (products.length) {
       grid.classList.add('pc-grid', 'pc-grid--compact');
-      syncFirstBatch();
+      syncGrid();
     }
   };
 }
