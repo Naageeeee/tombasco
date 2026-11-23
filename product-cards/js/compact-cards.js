@@ -22,7 +22,8 @@ function compactCard(card) {
   name.before(heading);
   heading.append(name, price);
 
-  const size = createSizeSelect(card, name.textContent.trim());
+  const productName = name.textContent.trim();
+  const size = createSizePicker(card, productName);
   row.classList.add('pc-compact-controls');
   if (size) row.prepend(size);
 
@@ -44,62 +45,114 @@ function compactCard(card) {
   row.append(addWrap);
   card.classList.add('pc--compact');
 
-  enableCompactPhotoPreview(card, name.textContent.trim());
-
-  const quantityField = qty?.querySelector('.qty');
-  if (size && quantityField) {
-    function matchSizeWidth() {
-      const width = size.getBoundingClientRect().width;
-      if (width > 0) quantityField.style.setProperty('--compact-qty-width', `${width}px`);
-    }
-
-    matchSizeWidth();
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(matchSizeWidth).observe(size);
-    } else {
-      size.addEventListener('change', matchSizeWidth);
-    }
-  }
+  enableCompactPhotoPreview(card, productName);
 }
 
-function createSizeSelect(card, productName) {
+let sizePickerId = 0;
+
+function createSizePicker(card, productName) {
   const oldPicker = card.querySelector('[data-sz]');
   const chips = [...(oldPicker?.querySelectorAll('.sz__chip') ?? [])];
   if (!chips.length) return null;
 
-  const select = document.createElement('select');
-  select.className = 'pc-compact-size';
-  select.setAttribute('aria-label', `Size of ${productName}`);
-
   const picker = document.createElement('div');
   picker.className = 'pc-compact-size-picker';
-  const measure = document.createElement('span');
-  measure.className = 'pc-compact-size-measure';
-  measure.setAttribute('aria-hidden', 'true');
-  picker.innerHTML = `<svg class="icon pc-compact-size-chevron" aria-hidden="true" focusable="false">
-    <use href="#i-chevron"></use>
-  </svg>`;
-  picker.prepend(measure, select);
+  picker.innerHTML = `
+    <button class="pc-compact-size" type="button"
+      aria-haspopup="listbox" aria-expanded="false"></button>
+    <svg class="icon pc-compact-size-chevron" aria-hidden="true" focusable="false">
+      <use href="#i-chevron"></use>
+    </svg>
+    <div class="pc-compact-size-menu" role="listbox" hidden></div>`;
 
-  chips.forEach((chip, index) => {
-    const option = document.createElement('option');
-    option.value = String(index);
-    option.textContent = readableSizeLabel(chip.textContent) || 'Standard';
-    select.append(option);
+  const trigger = picker.querySelector('button');
+  const menu = picker.querySelector('[role="listbox"]');
+  menu.id = `pc-size-menu-${++sizePickerId}`;
+  menu.setAttribute('aria-label', `Sizes of ${productName}`);
+  trigger.setAttribute('aria-controls', menu.id);
+
+  const choices = chips.map(chip => {
+    const button = document.createElement('button');
+    button.className = 'pc-compact-size-option';
+    button.setAttribute('role', 'option');
+    button.type = 'button';
+    button.tabIndex = -1;
+    button.textContent = readableSizeLabel(chip.textContent) || 'Standard';
+    menu.append(button);
+    return button;
   });
+
+  let selected = 0;
 
   function syncSelectedSize() {
     const index = chips.findIndex(chip => chip.getAttribute('aria-checked') === 'true');
-    if (index >= 0) select.value = String(index);
-    measure.textContent = select.selectedOptions[0]?.textContent ?? 'Size';
+    if (index >= 0) selected = index;
+    const label = choices[selected].textContent;
+    trigger.textContent = label;
+    trigger.setAttribute('aria-label', `Size of ${productName}: ${label}`);
+    choices.forEach((option, index) => option.setAttribute('aria-selected', String(index === selected)));
   }
 
-  select.addEventListener('change', () => {
-    chips[Number(select.value)]?.click();
-    syncSelectedSize();
+  function closeMenu(restoreFocus = false) {
+    if (menu.hidden) return;
+    menu.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('pointerdown', dismissOutside);
+    if (restoreFocus) trigger.focus({ preventScroll: true });
+  }
+
+  function dismissOutside(event) {
+    if (!picker.contains(event.target)) closeMenu();
+  }
+
+  function openMenu() {
+    menu.hidden = false;
+    trigger.setAttribute('aria-expanded', 'true');
+    document.addEventListener('pointerdown', dismissOutside);
+    choices[selected].focus();
+  }
+
+  trigger.addEventListener('click', () => {
+    if (menu.hidden) openMenu();
+    else closeMenu(true);
   });
 
-  // The existing card updates the selected variant after an item is added.
+  choices.forEach((option, index) => {
+    option.addEventListener('click', () => {
+      chips[index].click();
+      syncSelectedSize();
+      closeMenu(true);
+    });
+  });
+
+  picker.addEventListener('focusout', event => {
+    if (!picker.contains(event.relatedTarget)) closeMenu();
+  });
+
+  picker.addEventListener('keydown', event => {
+    if (menu.hidden) {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        openMenu();
+      }
+      return;
+    }
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu(true);
+      return;
+    }
+    const index = choices.indexOf(document.activeElement);
+    let next;
+    if (event.key === 'ArrowDown') next = index >= 0 ? Math.min(index + 1, choices.length - 1) : selected;
+    if (event.key === 'ArrowUp') next = index >= 0 ? Math.max(index - 1, 0) : selected;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = choices.length - 1;
+    if (next === undefined) return;
+    event.preventDefault();
+    choices[next].focus();
+  });
+
   new MutationObserver(syncSelectedSize).observe(oldPicker, {
     subtree: true,
     attributes: true,

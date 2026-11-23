@@ -55,13 +55,11 @@ const normStock = s => {
   return 'In stock';
 };
 
-const TYPES = ['standard', 'wide', 'pipe'];
-
-function resolveType(p) {
-  if (TYPES.includes(p.cardType)) return p.cardType;
-  if (/\bpipes$/i.test((p.type || '').trim())) return 'pipe';
-  if (p.variants.some(v => v.size.length > 5)) return 'wide';
-  return 'standard';
+function readCardType(value) {
+  const type = String(value ?? '').trim().toLowerCase();
+  if (type === 'pipe') return 'pipe';
+  if (type === 'standard' || type === 'wide') return 'standard';
+  return '';
 }
 
 export function buildProducts(rows) {
@@ -83,13 +81,14 @@ export function buildProducts(rows) {
         name: r.product_name,
         image: r.image,
         searchWords: r.search_words || '',
-        cardType: (r.card_type || '').toLowerCase(),
+        cardType: '',
         variants: [],
         order: num(r.sort_order) ?? idx
       };
 
       map.set(id, p);
     }
+    p.cardType ||= readCardType(r.card_type);
 
     const price = num(r.price_ghs);
     const promo = num(r.promo_price_ghs);
@@ -118,7 +117,7 @@ export function buildProducts(rows) {
 
   list.forEach(p => {
     p.variants.sort((a, b) => a.order - b.order);
-    p.cardType = resolveType(p);
+    p.cardType ||= 'standard';
   });
 
   return list.sort((a, b) => a.order - b.order);

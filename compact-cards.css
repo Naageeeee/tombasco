@@ -83,29 +83,20 @@
 
 .pc-compact-size-picker {
   position: relative;
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   width: max-content;
-  min-width: 80px;
-  max-width: min(100%, 88px);
-  height: 44px;
+  min-width: 0;
+  max-width: 100%;
   font-size: 16px;
 }
 
-.pc-compact-size-measure {
-  display: block;
-  padding-inline: 9px 33px;
-  visibility: hidden;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .pc-compact-size {
-  position: absolute;
-  inset: 0;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  width: max-content;
+  min-width: 100%;
+  max-width: 100%;
   min-height: 44px;
+  padding-block: 6px;
   padding-inline: 8px 32px;
   appearance: none;
   border: 1px solid var(--line);
@@ -113,6 +104,8 @@
   background: #fff;
   color: var(--ink);
   font: inherit;
+  text-align: start;
+  overflow-wrap: anywhere;
   cursor: pointer;
 }
 
@@ -132,7 +125,7 @@
 }
 
 .pc--compact .qty {
-  width: var(--compact-qty-width, 80px);
+  width: 80px;
   height: 44px;
 }
 
@@ -140,6 +133,91 @@
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
+}
+
+.pc--compact.pc--standard .pc-compact-controls {
+  container-type: inline-size;
+}
+
+.pc--compact.pc--standard .pc-compact-controls > .pc__qty {
+  margin-inline-start: auto;
+}
+
+.pc-compact-size-menu {
+  position: absolute;
+  z-index: 4;
+  inset-block-start: calc(100% + 4px);
+  inset-inline-start: 0;
+  box-sizing: border-box;
+  width: max-content;
+  min-width: 100%;
+  max-width: calc(100vw - 56px);
+  max-width: 100cqi;
+  max-height: 220px;
+  padding: 4px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.pc-compact-size-option {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.pc-compact-size-option:is(:hover, :focus-visible, [aria-selected="true"]) {
+  background: #E3EEF8;
+  color: var(--ink);
+  transform: none;
+}
+
+.pc-compact-size-option:focus-visible {
+  outline-offset: -2px;
+}
+
+.pc--compact.pc--pipe .pc__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 44px 44px;
+  align-content: start;
+}
+
+.pc--compact.pc--pipe :is(.pc-compact-heading, .pc-compact-controls) {
+  display: contents;
+}
+
+.pc--pipe .pc-compact-heading .pc__name {
+  grid-area: 1 / 1 / span 2;
+  align-self: center;
+}
+
+.pc--pipe .pc-compact-heading .pc__price {
+  grid-area: 1 / 2;
+  align-self: start;
+  justify-self: end;
+  max-width: 126px;
+}
+
+.pc--pipe .pc-compact-controls > .pc__qty {
+  grid-area: 2 / 2;
+  align-self: end;
+  justify-self: end;
+}
+
+.pc--pipe .pc-compact-add {
+  grid-area: 3 / 1 / auto / -1;
 }
 
 .pc--compact .qty :is(.qty__btn, .qty__list) {

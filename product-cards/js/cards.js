@@ -4,8 +4,7 @@ const GAP = 8;
 const FRAME = 24;
 
 export const VARIANTS = {
-  standard: { chip: 46, flags: { tag: true, sale: true, qty: true } },
-  wide: { chip: 'auto', min: 76, flags: { tag: true, sale: true, qty: true } },
+  standard: { chip: 'auto', min: 76, flags: { tag: true, sale: true, qty: true } },
   pipe: { chip: 46, flags: { tag: true, sale: true, qty: true } }
 };
 
@@ -85,10 +84,10 @@ function wireQuantityClose() {
 
 export function createCard(product, options = {}) {
   ensureIcons();
-  const type = VARIANTS[product.cardType] ? product.cardType : 'standard';
+  const type = product.cardType === 'pipe' ? 'pipe' : 'standard';
   const config = VARIANTS[type];
   const labels = product.variants.map(variant => variant.size);
-  const hasSizes = labels.some(Boolean);
+  const hasSizes = type !== 'pipe' && labels.some(Boolean);
   const image = imagePath(product.image, options.imageFolder ?? IMAGE_FOLDER);
   const state = { index: 0, page: 0, maxPage: 0, visibleCount: labels.length, pageWidth: 0, paged: false };
 
