@@ -526,7 +526,7 @@ details[open]::details-content {
 .sub-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
     padding-bottom: 8px;
 }
 
@@ -537,6 +537,7 @@ details[open]::details-content {
     padding: 0 16px 0 32px;
     border-radius: 8px;
     font-size: 13px;
+    transition: background-color 0.2s;
 }
 
 .sub-link.active {
@@ -545,6 +546,11 @@ details[open]::details-content {
     font-weight: 600;
     border: 0.1px solid #1f6fb2;
     box-shadow: 0 2px 8px 0 #00000033;
+}
+
+.sub-link:not(.active):hover {
+    background: #E3EEF8;
+    color: #12263A;
 }
 
 
