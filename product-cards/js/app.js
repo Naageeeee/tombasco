@@ -470,24 +470,36 @@ if (catalogueEntry.searchParams.get('cart') === '1') {
   function show(typeName) {
     current = typeName;
     const type = allTypes.find(item => item.name === typeName) || { name: typeName || 'Products', description: '' };
-    if ($('title')) $('title').textContent = type.name;
-    if ($('blurb')) $('blurb').textContent = type.description;
+    const searchText = $('catalog-search')?.value.trim() || '';
+    const query = searchText.toLowerCase();
     $('nav').querySelectorAll('a[data-type]').forEach(link => {
       link.classList.toggle('active', link.dataset.type === typeName);
     });
     document.querySelectorAll('.pill .pill-label').forEach(label => { label.textContent = type.name; });
 
-    const query = $('catalog-search')?.value.trim().toLowerCase() || '';
     const matchesSearch = product => [
       product.name, product.category, product.type, product.searchWords,
       ...product.variants.map(variant => `${variant.size} ${variant.unit}`)
     ].join(' ').toLowerCase().includes(query);
     const list = query ? products.filter(matchesSearch) : products.filter(product => product.type === typeName);
+
+    const resultLabel = list.length === 1 ? 'product' : 'products';
+
+    if ($('title')) {
+      $('title').textContent = query ? `Search results for “${searchText}”` : type.name;
+    }
+
+    if ($('blurb')) {
+      $('blurb').textContent = query
+        ? `${list.length} ${resultLabel} found.`
+        : type.description;
+    }
+
     if (!list.length) {
       renderGrid($('grid'), []);
       $('grid').className = '';
       $('grid').innerHTML = query
-        ? `<div class="demo-empty">No products found for “${esc(query)}”.</div>`
+        ? `<div class="demo-empty">No products found for “${esc(searchText)}”.</div>`
         : `<div class="demo-empty">No products in ${esc(type.name)} yet.</div>`;
       return;
     }

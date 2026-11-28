@@ -433,3 +433,14 @@ body:has(.pc-image-preview[open]) {
 .content > .catalogue-load-more[hidden] {
   display: none;
 }
+
+
+@media (width > 650px) {
+  .layout > .sidebar {
+    position: sticky;
+    top: 32px;
+    align-self: flex-start;
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+  }
+}
